@@ -1,29 +1,46 @@
-using System;
 using System.Collections.Generic;
 using Microsoft.AspNetCore.Mvc;
+using dotnetapp.Models; // Ensure to include your Flight model namespace
 
 namespace dotnetapp.Controllers
 {
     public class FlightController : Controller
     {
-        private List<Flight> _flightList; // Collection to store flight information
+        private readonly List<Flight> _flightList; // Collection to store flight information
 
         public FlightController()
         {
-            _flightList = new List<Flight>
+            // Initialize an empty list for flights
+            _flightList = new List<Flight>();
+        }
+
+        // Action to display the flight creation form
+        public IActionResult Create()
+        {
+            return View();
+        }
+
+        // Action to handle form submission and create a new flight
+        [HttpPost]
+        public IActionResult Create(Flight newFlight)
+        {
+            if (ModelState.IsValid)
             {
-                // Adding sample flights to the list
-                new Flight("Mumbai", "01h 45m", "Dubai", "₹ 15903", "flydubai", "2137"),
-                new Flight("New Delhi", "03h 30m", "Dubai", "₹ 17070", "Emirates", "511"),
-                // Add more flights here as needed
-            };
+                // Add the submitted flight to the flight list
+                _flightList.Add(newFlight);
+
+                // Redirect to the index or any other appropriate action
+                return RedirectToAction("Index");
+            }
+
+            // If the model state is not valid, return back to the form view
+            return View(newFlight);
         }
 
         // Action to display all flights
         public IActionResult Index()
         {
-            Console.WriteLine(_flightList);
-            return View(_flightList); // Pass the flight list to the view
+            return View(_flightList);
         }
 
         // Other actions for handling flights...

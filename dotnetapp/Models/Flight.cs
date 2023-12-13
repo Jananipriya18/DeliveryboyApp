@@ -1,20 +1,20 @@
-using System;
-
 public class Flight
 {
-    public int Id { get; set; }
+    public string Departure { get; set; }
+    public string Duration { get; set; }
+    public string Arrival { get; set; }
+    public string Price { get; set; }
+    public string Airline { get; set; }
     public string FlightNumber { get; set; }
-    public string DepartureCity { get; set; }
-    public string ArrivalCity { get; set; }
-    // ... other flight-related properties
 
-    public override string ToString()
+    // Constructor to initialize flight information
+    public Flight(string departure, string duration, string arrival, string price, string airline, string flightNumber)
     {
-        ID = 2;
-        FlightNumber = 23455;
-        DepartureCity  = Coimbatore;
-        ArrivalCity = London;
-        return $"Flight ID: {Id}, Flight Number: {FlightNumber}, Departure: {DepartureCity}, Arrival: {ArrivalCity}";
-        
+        Departure = departure;
+        Duration = duration;
+        Arrival = arrival;
+        Price = price;
+        Airline = airline;
+        FlightNumber = flightNumber;
     }
 }

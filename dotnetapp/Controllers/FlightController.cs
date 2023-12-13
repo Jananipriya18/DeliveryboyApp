@@ -1,72 +1,30 @@
 using System;
 using System.Collections.Generic;
-using System.Linq;
-using System.Web.Mvc;
-using YourFlightBookingSystem.Models; // Import your models
+using Microsoft.AspNetCore.Mvc;
 
-namespace YourFlightBookingSystem.Controllers
+namespace dotnetapp.Controllers
 {
     public class FlightController : Controller
     {
-        // Action to display the flight search page
-        public ActionResult Search()
+        private List<Flight> _flightList; // Collection to store flight information
+
+        public FlightController()
         {
-            // Logic to display the flight search view
-            return View();
-        }
-
-        // Action to handle flight search functionality
-        [HttpPost]
-        public ActionResult Search(string departureCity, string arrivalCity, DateTime departureDate)
-        {
-            // Logic to search for flights based on user input (departure city, arrival city, date, etc.)
-            List<Flight> foundFlights = YourFlightSearchLogic.SearchFlights(departureCity, arrivalCity, departureDate);
-
-            // Pass the found flights to the view
-            return View("SearchResults", foundFlights);
-        }
-
-        // Action to display flight details
-        public ActionResult Details(int flightId)
-        {
-            // Retrieve flight details by ID
-            Flight selectedFlight = YourFlightDetailsLogic.GetFlightDetailsById(flightId);
-
-            // Display flight details
-            return View(selectedFlight);
-        }
-
-        // Action to handle the booking process
-        [HttpPost]
-        public ActionResult Book(int flightId, string passengerName, string passengerEmail)
-        {
-            // Logic to handle the booking process, including validation and storing the booking details in the database
-            bool isBookingSuccessful = YourBookingLogic.BookFlight(flightId, passengerName, passengerEmail);
-
-            if (isBookingSuccessful)
+            _flightList = new List<Flight>
             {
-                // Redirect to a success page or display a success message
-                return RedirectToAction("BookingConfirmation");
-            }
-            else
-            {
-                // Handle the case when booking fails
-                return RedirectToAction("BookingFailure");
-            }
+                // Adding sample flights to the list
+                new Flight("Mumbai", "01h 45m", "Dubai", "₹ 15903", "flydubai", "2137"),
+                new Flight("New Delhi", "03h 30m", "Dubai", "₹ 17070", "Emirates", "511"),
+                // Add more flights here as needed
+            };
         }
 
-        // Action to display booking confirmation
-        public ActionResult BookingConfirmation()
+        // Action to display all flights
+        public IActionResult Index()
         {
-            // Logic to display the booking confirmation view
-            return View();
+            return View(_flightList); // Pass the flight list to the view
         }
 
-        // Action to display booking failure
-        public ActionResult BookingFailure()
-        {
-            // Logic to display the booking failure view
-            return View();
-        }
+        // Other actions for handling flights...
     }
 }

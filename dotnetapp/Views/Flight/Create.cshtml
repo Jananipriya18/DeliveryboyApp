@@ -1,0 +1,36 @@
+@model dotnetapp.Flight
+
+@{
+    ViewData["Title"] = "Create Flight";
+}
+
+<h1>Create a New Flight</h1>
+
+<form asp-action="Create" method="post">
+    <div>
+        <label asp-for="Departure">Departure:</label>
+        <input asp-for="Departure" />
+    </div>
+    <div>
+        <label asp-for="Duration">Duration:</label>
+        <input asp-for="Duration" />
+    </div>
+    <div>
+        <label asp-for="Arrival">Arrival:</label>
+        <input asp-for="Arrival" />
+    </div>
+    <div>
+        <label asp-for="Price">Price:</label>
+        <input asp-for="Price" />
+    </div>
+    <div>
+        <label asp-for="Airline">Airline:</label>
+        <input asp-for="Airline" />
+    </div>
+    <div>
+        <label asp-for="FlightNumber">Flight Number:</label>
+        <input asp-for="FlightNumber" />
+    </div>
+    
+    <button type="submit">Create Flight</button>
+</form>

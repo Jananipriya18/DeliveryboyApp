@@ -14,8 +14,6 @@ namespace dotnetapp.Controllers
             _flightList = new List<Flight>();
         }
 
-        
-
         // Action to display the flight creation form
         public IActionResult Create()
         {
@@ -26,14 +24,15 @@ namespace dotnetapp.Controllers
         [HttpPost]
         public IActionResult Create(Flight newFlight)
         {
-            if (ModelState.IsValid)
-            {
+            Console.WriteLine(newFlight);
+             if (ModelState.IsValid)
+            // {
                 // Add the submitted flight to the flight list
                 _flightList.Add(newFlight);
 
                 // Redirect to the index or any other appropriate action
                 return RedirectToAction("Index");
-            }
+             }
 
             // If the model state is not valid, return back to the form view
             return View(newFlight);

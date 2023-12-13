@@ -22,6 +22,7 @@ namespace dotnetapp.Controllers
         // Action to display all flights
         public IActionResult Index()
         {
+            Console.WriteLine(_flightList);
             return View(_flightList); // Pass the flight list to the view
         }
 

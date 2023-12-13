@@ -23,18 +23,26 @@
             </tr>
         </thead>
         <tbody>
-            @foreach (var flight in Model)
+            @if (Model != null)  // Null check
+            {
+                @foreach (var flight in Model)
+                {
+                    <tr>
+                        <td>@flight.Departure</td>
+                        <td>@flight.Duration</td>
+                        <td>@flight.Arrival</td>
+                        <td>@flight.Price</td>
+                        <td>@flight.Airline</td>
+                        <td>@flight.FlightNumber</td>
+                    </tr>
+                }
+            }
+            else
             {
                 <tr>
-                    <td>@flight.Departure</td>
-                    <td>@flight.Duration</td>
-                    <td>@flight.Arrival</td>
-                    <td>@flight.Price</td>
-                    <td>@flight.Airline</td>
-                    <td>@flight.FlightNumber</td>
+                    <td colspan="6">No flight information available.</td>
                 </tr>
             }
         </tbody>
     </table>
 </div>
-

@@ -1,7 +1,7 @@
-public class Passenger
-{
-    public int Id { get; set; }
-    public string Name { get; set; }
-    public string Email { get; set; }
-    // ... other passenger-related properties
-}
+// public class Passenger
+// {
+//     public int Id { get; set; }
+//     public string Name { get; set; }
+//     public string Email { get; set; }
+//     // ... other passenger-related properties
+// }

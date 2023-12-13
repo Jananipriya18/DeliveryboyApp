@@ -1,4 +1,5 @@
-﻿@{
+﻿@model List<Flight>
+@{
     ViewData["Title"] = "Home Page";
 }
 
@@ -6,3 +7,34 @@
     <h1 class="display-4">Welcome</h1>
     <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
 </div>
+
+<div class="text-center">
+    <h1 class="display-4">Flight Information</h1>
+
+    <table class="table">
+        <thead>
+            <tr>
+                <th>Departure</th>
+                <th>Duration</th>
+                <th>Arrival</th>
+                <th>Price</th>
+                <th>Airline</th>
+                <th>Flight Number</th>
+            </tr>
+        </thead>
+        <tbody>
+            @foreach (var flight in Model)
+            {
+                <tr>
+                    <td>@flight.Departure</td>
+                    <td>@flight.Duration</td>
+                    <td>@flight.Arrival</td>
+                    <td>@flight.Price</td>
+                    <td>@flight.Airline</td>
+                    <td>@flight.FlightNumber</td>
+                </tr>
+            }
+        </tbody>
+    </table>
+</div>
+

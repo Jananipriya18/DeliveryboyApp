@@ -14,6 +14,8 @@ namespace dotnetapp.Controllers
             _flightList = new List<Flight>();
         }
 
+        
+
         // Action to display the flight creation form
         public IActionResult Create()
         {

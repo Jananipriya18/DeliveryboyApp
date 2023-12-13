@@ -1,3 +1,5 @@
+namespace dotnetapp.Models{
+
 public class Flight
 {
     public string Departure { get; set; }
@@ -17,4 +19,5 @@ public class Flight
         Airline = airline;
         FlightNumber = flightNumber;
     }
+}
 }

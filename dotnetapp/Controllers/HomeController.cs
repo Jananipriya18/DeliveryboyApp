@@ -1,7 +1,6 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Diagnostics;
-using System.Linq;
 using Microsoft.AspNetCore.Mvc;
 using Microsoft.Extensions.Logging;
 using dotnetapp.Models;
@@ -19,11 +18,13 @@ namespace dotnetapp.Controllers
 
         // Existing actions for main pages
 
+        [HttpGet]
         public IActionResult Index()
         {
             return View();
         }
 
+        [HttpGet]
         public IActionResult Privacy()
         {
             return View();
@@ -35,8 +36,9 @@ namespace dotnetapp.Controllers
             return View(new ErrorViewModel { RequestId = Activity.Current?.Id ?? HttpContext.TraceIdentifier });
         }
 
-        // Flight related actions (simplified)
+        // Flight related actions (modified/combined)
 
+        [HttpGet]
         public IActionResult FlightSearch()
         {
             return View();
@@ -50,6 +52,7 @@ namespace dotnetapp.Controllers
             return View("FlightSearchResults", foundFlights);
         }
 
+        [HttpGet]
         public IActionResult FlightDetails(int flightId)
         {
             // Simplified flight details logic
@@ -73,11 +76,13 @@ namespace dotnetapp.Controllers
             }
         }
 
+        [HttpGet]
         public IActionResult BookingConfirmation()
         {
             return View();
         }
 
+        [HttpGet]
         public IActionResult BookingFailure()
         {
             return View();

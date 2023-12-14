@@ -1,14 +1,9 @@
 ﻿@model List<Flight>
 @{
-    ViewData["Title"] = "Home Page";
+    ViewData["Title"] = "Flight Information";
 }
 
-@* <div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div> *@
-
-<a asp-controller="Flight" asp-action="Create">Create a New Flight Info</a>
+<a asp-controller="Flight" asp-action="Create">Create a New Flight</a>
 
 <div class="text-center">
     <h1 class="display-4">Flight Information</h1>
@@ -22,10 +17,11 @@
                 <th>Price</th>
                 <th>Airline</th>
                 <th>Flight Number</th>
+                <th>Actions</th>
             </tr>
         </thead>
         <tbody>
-            @if (Model != null)  // Null check
+            @if (Model != null && Model.Any())
             {
                 @foreach (var flight in Model)
                 {
@@ -36,13 +32,20 @@
                         <td>@flight.Price</td>
                         <td>@flight.Airline</td>
                         <td>@flight.FlightNumber</td>
+                        <td>
+                            <a asp-controller="Flight" asp-action="Update" asp-route-id="@flight.ID">Update</a>
+                            <form asp-controller="Flight" asp-action="Delete" method="post">
+                                <input type="hidden" name="id" value="@flight.ID" />
+                                <button type="submit">Delete</button>
+                            </form>
+                        </td>
                     </tr>
                 }
             }
             else
             {
                 <tr>
-                    <td colspan="6">No flight information available.</td>
+                    <td colspan="7">No flight information available.</td>
                 </tr>
             }
         </tbody>

@@ -1,0 +1,30 @@
+public IActionResult Update(int id)
+{
+    var flightToUpdate = _flightList.FirstOrDefault(f => f.ID == id);
+    if (flightToUpdate == null)
+    {
+        return NotFound();
+    }
+
+    return View(flightToUpdate);
+}
+
+[HttpPost]
+public IActionResult Update(int id, Flight updatedFlight)
+{
+    var flightToUpdate = _flightList.FirstOrDefault(f => f.ID == id);
+    if (flightToUpdate == null)
+    {
+        return NotFound();
+    }
+
+    // Update the properties of the existing flight
+    flightToUpdate.Departure = updatedFlight.Departure;
+    flightToUpdate.Duration = updatedFlight.Duration;
+    flightToUpdate.Arrival = updatedFlight.Arrival;
+    flightToUpdate.Price = updatedFlight.Price;
+    flightToUpdate.Airline = updatedFlight.Airline;
+    flightToUpdate.FlightNumber = updatedFlight.FlightNumber;
+
+    return RedirectToAction("Index");
+}

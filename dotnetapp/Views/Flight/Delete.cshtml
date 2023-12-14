@@ -1,0 +1,13 @@
+[HttpPost]
+public IActionResult Delete(int id)
+{
+    var flightToDelete = _flightList.FirstOrDefault(f => f.ID == id);
+    if (flightToDelete == null)
+    {
+        return NotFound();
+    }
+
+    _flightList.Remove(flightToDelete);
+
+    return RedirectToAction("Index");
+}

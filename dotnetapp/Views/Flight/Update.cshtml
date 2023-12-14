@@ -1,30 +1,36 @@
-public IActionResult Update(int id)
-{
-    var flightToUpdate = _flightList.FirstOrDefault(f => f.ID == id);
-    if (flightToUpdate == null)
-    {
-        return NotFound();
-    }
+@model dotnetapp.Models.Flight
 
-    return View(flightToUpdate);
-}
+<h2>Update Flight</h2>
 
-[HttpPost]
-public IActionResult Update(int id, Flight updatedFlight)
-{
-    var flightToUpdate = _flightList.FirstOrDefault(f => f.ID == id);
-    if (flightToUpdate == null)
-    {
-        return NotFound();
-    }
-
-    // Update the properties of the existing flight
-    flightToUpdate.Departure = updatedFlight.Departure;
-    flightToUpdate.Duration = updatedFlight.Duration;
-    flightToUpdate.Arrival = updatedFlight.Arrival;
-    flightToUpdate.Price = updatedFlight.Price;
-    flightToUpdate.Airline = updatedFlight.Airline;
-    flightToUpdate.FlightNumber = updatedFlight.FlightNumber;
-
-    return RedirectToAction("Index");
-}
+<form asp-action="Update" method="post">
+    <div>
+        <input type="hidden" asp-for="ID" />
+    </div>
+    <div>
+        <label asp-for="Departure"></label>
+        <input asp-for="Departure" />
+    </div>
+    <div>
+        <label asp-for="Duration"></label>
+        <input asp-for="Duration" />
+    </div>
+    <div>
+        <label asp-for="Arrival"></label>
+        <input asp-for="Arrival" />
+    </div>
+    <div>
+        <label asp-for="Price"></label>
+        <input asp-for="Price" />
+    </div>
+    <div>
+        <label asp-for="Airline"></label>
+        <input asp-for="Airline" />
+    </div>
+    <div>
+        <label asp-for="FlightNumber"></label>
+        <input asp-for="FlightNumber" />
+    </div>
+    <div>
+        <input type="submit" value="Update" />
+    </div>
+</form>

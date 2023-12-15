@@ -1,17 +1,15 @@
+using System;
 using System.Collections.Generic;
-using System.Linq;
+using System.Data;
 using Microsoft.AspNetCore.Mvc;
 using dotnetapp.Models;
+using MySql.Data.MySqlClient;
 
 namespace dotnetapp.Controllers
 {
     public class FlightController : Controller
     {
-        private static readonly List<Flight> _flightList = new List<Flight>
-        {
-            new Flight(1,"Mumbai", "01h 45m", "Dubai", "₹ 15903", "flydubai", "2137"),
-            new Flight(2,"New Delhi", "03h 30m", "Dubai", "₹ 17070", "Emirates", "511")
-        };
+        private readonly string connectionString = "Server=127.0.0.1;Port=3306;Database=flightdetails;Uid=root;Pwd=Janani18;";
 
         public IActionResult Create()
         {
@@ -23,7 +21,31 @@ namespace dotnetapp.Controllers
         {
             if (ModelState.IsValid)
             {
-                _flightList.Add(newFlight);
+                using (MySqlConnection connection = new MySqlConnection(connectionString))
+                {
+                    string query = "INSERT INTO Flights (Departure, Duration, Arrival, Price, Airline, FlightNumber) " +
+                                   "VALUES (@Departure, @Duration, @Arrival, @Price, @Airline, @FlightNumber)";
+
+                    MySqlCommand command = new MySqlCommand(query, connection);
+                    command.Parameters.AddWithValue("@Departure", newFlight.Departure);
+                    command.Parameters.AddWithValue("@Duration", newFlight.Duration);
+                    command.Parameters.AddWithValue("@Arrival", newFlight.Arrival);
+                    command.Parameters.AddWithValue("@Price", newFlight.Price);
+                    command.Parameters.AddWithValue("@Airline", newFlight.Airline);
+                    command.Parameters.AddWithValue("@FlightNumber", newFlight.FlightNumber);
+
+                    try
+                    {
+                        connection.Open();
+                        command.ExecuteNonQuery();
+                    }
+                    catch (MySqlException ex)
+                    {
+                        // Handle the exception, log it, or provide feedback to the user
+                        Console.WriteLine("Error: " + ex.Message);
+                    }
+                }
+
                 return RedirectToAction("Index");
             }
 
@@ -32,52 +54,46 @@ namespace dotnetapp.Controllers
 
         public IActionResult Index()
         {
-            return View(_flightList);
-        }
+            List<Flight> flights = new List<Flight>();
 
-        public IActionResult Update(int id)
-        {
-            var flightToUpdate = _flightList.FirstOrDefault(f => f.ID == id);
-            if (flightToUpdate == null)
+            using (MySqlConnection connection = new MySqlConnection(connectionString))
             {
-                return NotFound(); // Or handle the case where the flight doesn't exist
+                string query = "SELECT * FROM Flights";
+
+                MySqlCommand command = new MySqlCommand(query, connection);
+
+                try
+                {
+                    connection.Open();
+
+                    using (MySqlDataReader reader = command.ExecuteReader())
+                    {
+                        while (reader.Read())
+                        {
+                            Flight flight = new Flight
+                            {
+                                ID = Convert.ToInt32(reader["ID"]),
+                                Departure = reader["Departure"].ToString(),
+                                Duration = reader["Duration"].ToString(),
+                                Arrival = reader["Arrival"].ToString(),
+                                Price = reader["Price"].ToString(),
+                                Airline = reader["Airline"].ToString(),
+                                FlightNumber = reader["FlightNumber"].ToString()
+                            };
+                            flights.Add(flight);
+                        }
+                    }
+                }
+                catch (MySqlException ex)
+                {
+                    // Handle the exception, log it, or provide feedback to the user
+                    Console.WriteLine("Error: " + ex.Message);
+                }
             }
 
-            return View(flightToUpdate);
+            return View(flights);
         }
 
-        [HttpPost]
-        public IActionResult Update(int id, Flight updatedFlight)
-        {
-            var flightToUpdate = _flightList.FirstOrDefault(f => f.ID == id);
-            if (flightToUpdate == null)
-            {
-                return NotFound(); // Or handle the case where the flight doesn't exist
-            }
-
-            // Update the properties of the existing flight
-            flightToUpdate.Departure = updatedFlight.Departure;
-            flightToUpdate.Duration = updatedFlight.Duration;
-            flightToUpdate.Arrival = updatedFlight.Arrival;
-            flightToUpdate.Price = updatedFlight.Price;
-            flightToUpdate.Airline = updatedFlight.Airline;
-            flightToUpdate.FlightNumber = updatedFlight.FlightNumber;
-
-            return RedirectToAction("Index");
-        }
-
-        [HttpPost]
-        public IActionResult Delete(int id)
-        {
-            var flightToDelete = _flightList.FirstOrDefault(f => f.ID == id);
-            if (flightToDelete == null)
-            {
-                return NotFound(); // Or handle the case where the flight doesn't exist
-            }
-
-            _flightList.Remove(flightToDelete);
-
-            return RedirectToAction("Index");
-        }
+        // Other actions for Update, Delete, etc., can be similarly modified
     }
 }

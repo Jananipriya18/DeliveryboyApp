@@ -1,0 +1,37 @@
+@model List<crudapp.Models.Furniture> 
+@* 
+@{
+    ViewBag.Title = "Furniture List";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Your layout file
+} *@
+
+<h2>Furniture List</h2>
+@* 
+<div class="card-container">
+    @foreach (var item in Model)
+    {
+        <div class="card">
+            <h4>@item.product</h4>
+            <p>@item.description</p>
+            <p>Material: @item.material</p>
+            <p>Cost: $@item.cost</p>
+            <!-- Additional details or actions if needed -->
+        </div>
+    }
+</div> *@
+@* 
+<style>
+    /* Define styles for the card container and cards */
+    .card-container {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px; /* Adjust the gap between cards */
+    }
+
+    .card {
+        border: 1px solid #ccc;
+        border-radius: 5px;
+        padding: 10px;
+        width: 250px; /* Adjust the card width */
+    }
+</style> *@

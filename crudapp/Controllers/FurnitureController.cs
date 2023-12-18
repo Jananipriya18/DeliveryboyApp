@@ -9,9 +9,9 @@ namespace crudapp.Controllers
 
     public class FurnitureController
     {
-        private string connectionString = "User ID=sa;password=examlyMssql@123;server=fcebdccccdbcfacbdcbaeadbebabcdebdca;Database=CRUDOperations;trusted_connection=false;Persist Security Info=False;Encrypt=False";
+        private string connectionString = "User ID=sa;password=examlyMssql@123;server=fcebdccccdbcfacbdcbaeadbebabcdebdca-0;Database=CRUDOperations;trusted_connection=false;Persist Security Info=False;Encrypt=False";
 
-        public List<Furniture> GetAllFurniture()
+        public List<Furniture> Index()
         {
             List<Furniture> furnitureList = new List<Furniture>();
 

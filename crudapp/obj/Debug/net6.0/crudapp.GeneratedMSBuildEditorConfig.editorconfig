@@ -23,6 +23,10 @@ build_metadata.AdditionalFiles.CssScope =
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRnVybml0dXJlL2RlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
+[/home/coder/project/workspace/crudapp/Views/Furniture/Index.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRnVybml0dXJlL0luZGV4LmNzaHRtbA==
+build_metadata.AdditionalFiles.CssScope = 
+
 [/home/coder/project/workspace/crudapp/Views/Furniture/update.cshtml]
 build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRnVybml0dXJlL3VwZGF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 

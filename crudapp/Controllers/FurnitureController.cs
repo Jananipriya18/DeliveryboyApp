@@ -11,6 +11,49 @@ namespace crudapp.Controllers
     {
         private string connectionString = "User ID=sa;password=examlyMssql@123;server=fcebdccccdbcfacbdcbaeadbebabcdebdca-0;Database=CRUDOperations;trusted_connection=false;Persist Security Info=False;Encrypt=False";
 
+        // Action method to display the form for creating a new furniture entry
+        public IActionResult Create()
+        {
+            return View(); // Return the Create.cshtml view for creating new furniture
+        }
+
+        // Action method to handle the form submission for creating new furniture
+        [HttpPost]
+        public IActionResult Create(Furniture newFurniture)
+        {
+            // Save the new furniture entry to the database using the provided model data
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "INSERT INTO Furniture (product, description, material, cost) " +
+                               "VALUES (@Product, @Description, @Material, @Cost)";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Product", newFurniture.product);
+                command.Parameters.AddWithValue("@Description", newFurniture.description);
+                command.Parameters.AddWithValue("@Material", newFurniture.material);
+                command.Parameters.AddWithValue("@Cost", newFurniture.cost);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        // Redirect to the Index action after creating the furniture entry
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    // Handle the exception if needed
+                }
+            }
+
+            // If insertion fails, return back to the Create page
+            return View(newFurniture);
+        }
+
         public IActionResult Index()
         {
             List<Furniture> furnitureList = new List<Furniture>();
@@ -40,10 +83,11 @@ namespace crudapp.Controllers
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
+                    // Handle the exception if needed
                 }
             }
 
-            return View(furnitureList); 
+            return View(furnitureList);
         }
     }
 }

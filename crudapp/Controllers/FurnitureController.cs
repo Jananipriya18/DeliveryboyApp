@@ -1,14 +1,15 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
-using System.Data.SqlClient;
+using Microsoft.Data.SqlClient;
+using crudapp.Models;
 
 namespace crudapp.Controllers
 {
-    
+
     public class FurnitureController
     {
-        private string connectionString = "User ID=sa;password=examlyMssql@123;server=fcebdccccdbcfacbdcbaeadbebabcdebdca;Database=FurnitureDB;trusted_connection=false;Persist Security Info=False;Encrypt=False";
+        private string connectionString = "User ID=sa;password=examlyMssql@123;server=fcebdccccdbcfacbdcbaeadbebabcdebdca;Database=CRUDOperations;trusted_connection=false;Persist Security Info=False;Encrypt=False";
 
         public List<Furniture> GetAllFurniture()
         {
@@ -26,11 +27,11 @@ namespace crudapp.Controllers
                     while (reader.Read())
                     {
                         Furniture furniture = new Furniture();
-                        furniture.Id = Convert.ToInt32(reader["id"]);
-                        furniture.Product = reader["product"].ToString();
-                        furniture.Description = reader["description"].ToString();
-                        furniture.Material = reader["material"].ToString();
-                        furniture.Cost = Convert.ToDecimal(reader["cost"]);
+                        furniture.id = Convert.ToInt32(reader["id"]);
+                        furniture.product = reader["product"].ToString();
+                        furniture.description = reader["description"].ToString();
+                        furniture.material = reader["material"].ToString();
+                        furniture.cost = Convert.ToInt32(reader["cost"]);
 
                         furnitureList.Add(furniture);
                     }

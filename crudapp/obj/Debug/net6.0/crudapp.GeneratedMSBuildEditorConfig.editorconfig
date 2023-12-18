@@ -15,16 +15,16 @@ build_property.GenerateRazorMetadataSourceChecksumAttributes =
 build_property.MSBuildProjectDirectory = /home/coder/project/workspace/crudapp
 build_property._RazorSourceGeneratorDebug = 
 
-[/home/coder/project/workspace/crudapp/Views/Furnitures/create.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRnVybml0dXJlcy9jcmVhdGUuY3NodG1s
+[/home/coder/project/workspace/crudapp/Views/Furniture/create.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRnVybml0dXJlL2NyZWF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/coder/project/workspace/crudapp/Views/Furnitures/delete.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRnVybml0dXJlcy9kZWxldGUuY3NodG1s
+[/home/coder/project/workspace/crudapp/Views/Furniture/delete.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRnVybml0dXJlL2RlbGV0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
-[/home/coder/project/workspace/crudapp/Views/Furnitures/update.cshtml]
-build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRnVybml0dXJlcy91cGRhdGUuY3NodG1s
+[/home/coder/project/workspace/crudapp/Views/Furniture/update.cshtml]
+build_metadata.AdditionalFiles.TargetPath = Vmlld3MvRnVybml0dXJlL3VwZGF0ZS5jc2h0bWw=
 build_metadata.AdditionalFiles.CssScope = 
 
 [/home/coder/project/workspace/crudapp/Views/Home/Index.cshtml]

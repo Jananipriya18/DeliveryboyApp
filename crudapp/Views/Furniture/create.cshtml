@@ -1,0 +1,29 @@
+@model crudapp.Models.Furniture
+
+@{
+    ViewBag.Title = "Create Furniture";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Your layout file
+}
+
+<h2>Create Furniture</h2>
+
+@using (Html.BeginForm("Create", "Furniture", FormMethod.Post))
+{
+    <div>
+        @Html.LabelFor(model => model.product)
+        @Html.TextBoxFor(model => model.product)
+    </div>
+    <div>
+        @Html.LabelFor(model => model.description)
+        @Html.TextBoxFor(model => model.description)
+    </div>
+    <div>
+        @Html.LabelFor(model => model.material)
+        @Html.TextBoxFor(model => model.material)
+    </div>
+    <div>
+        @Html.LabelFor(model => model.cost)
+        @Html.TextBoxFor(model => model.cost)
+    </div>
+    <input type="submit" value="Create" />
+}

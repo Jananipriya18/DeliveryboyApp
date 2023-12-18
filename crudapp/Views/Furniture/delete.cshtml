@@ -1,4 +1,4 @@
-@model crupapp.Models.Furniture
+@model crudapp.Models.Furniture
 
 @{
     ViewBag.Title = "Delete Furniture";
@@ -10,14 +10,14 @@
 <div>
     <h4>Are you sure you want to delete this item?</h4>
     <div>
-        <h4>@Model.Product</h4>
-        <p>@Model.Description</p>
-        <p>@Model.Material</p>
-        <p>@Model.Cost</p>
+        <h4>@Model.product</h4>
+        <p>@Model.description</p>
+        <p>@Model.material</p>
+        <p>@Model.cost</p>
     </div>
     @using (Html.BeginForm("Delete", "Furniture", FormMethod.Post))
     {
-        @Html.HiddenFor(model => model.Id) <!-- Assuming Id is used to identify the furniture -->
+        @Html.HiddenFor(model => model.id) <!-- Assuming Id is used to identify the furniture -->
         <input type="submit" value="Delete" class="btn btn-danger" />
     }
 </div>

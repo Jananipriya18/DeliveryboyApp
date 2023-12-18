@@ -1,0 +1,23 @@
+@model crupapp.Models.Furniture
+
+@{
+    ViewBag.Title = "Delete Furniture";
+    Layout = "~/Views/Shared/_Layout.cshtml"; // Your layout file
+}
+
+<h2>Delete Furniture</h2>
+
+<div>
+    <h4>Are you sure you want to delete this item?</h4>
+    <div>
+        <h4>@Model.Product</h4>
+        <p>@Model.Description</p>
+        <p>@Model.Material</p>
+        <p>@Model.Cost</p>
+    </div>
+    @using (Html.BeginForm("Delete", "Furniture", FormMethod.Post))
+    {
+        @Html.HiddenFor(model => model.Id) <!-- Assuming Id is used to identify the furniture -->
+        <input type="submit" value="Delete" class="btn btn-danger" />
+    }
+</div>

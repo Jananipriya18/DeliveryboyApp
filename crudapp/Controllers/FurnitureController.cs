@@ -3,11 +3,12 @@ using System.Collections.Generic;
 using System.Data;
 using System.Data.SqlClient;
 
-namespace YourNamespace.Controllers
+namespace crudapp.Controllers
 {
+    
     public class FurnitureController
     {
-        private string connectionString = "User ID=sa;password=examlyMssql@123;server=dffafdafebcfacbdcbaeadbebabcdebdca-0;Database=FurnitureDB;trusted_connection=false;Persist Security Info=False;Encrypt=False";
+        private string connectionString = "User ID=sa;password=examlyMssql@123;server=fcebdccccdbcfacbdcbaeadbebabcdebdca;Database=FurnitureDB;trusted_connection=false;Persist Security Info=False;Encrypt=False";
 
         public List<Furniture> GetAllFurniture()
         {

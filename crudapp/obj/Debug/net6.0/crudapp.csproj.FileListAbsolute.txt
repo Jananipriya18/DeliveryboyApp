@@ -1,0 +1,8 @@
+/home/coder/project/workspace/crudapp/obj/Debug/net6.0/crudapp.csproj.AssemblyReference.cache
+/home/coder/project/workspace/crudapp/obj/Debug/net6.0/crudapp.GeneratedMSBuildEditorConfig.editorconfig
+/home/coder/project/workspace/crudapp/obj/Debug/net6.0/crudapp.AssemblyInfoInputs.cache
+/home/coder/project/workspace/crudapp/obj/Debug/net6.0/crudapp.AssemblyInfo.cs
+/home/coder/project/workspace/crudapp/obj/Debug/net6.0/crudapp.csproj.CoreCompileInputs.cache
+/home/coder/project/workspace/crudapp/obj/Debug/net6.0/crudapp.MvcApplicationPartsAssemblyInfo.cache
+/home/coder/project/workspace/crudapp/obj/Debug/net6.0/crudapp.RazorAssemblyInfo.cache
+/home/coder/project/workspace/crudapp/obj/Debug/net6.0/crudapp.RazorAssemblyInfo.cs

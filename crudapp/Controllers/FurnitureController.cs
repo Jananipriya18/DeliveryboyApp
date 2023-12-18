@@ -9,9 +9,7 @@ namespace crudapp.Controllers
 {
     public class FurnitureController : Controller
     {
-        private string connectionString = "Your_Connection_String"; // Replace with your connection string
-
-        // Existing code for Index, Create, Update, Delete actions
+User ID=sa;password=examlyMssql@123;server=dffafdafebcfacbdcbaeadbebabcdebdca-0;Database=FurnitureDB;trusted_connection=false;Persist Security Info=False;Encrypt=False        // Existing code for Index, Create, Update, Delete actions
 
         // POST: Handle form submission for create operation
         [HttpPost]
@@ -164,4 +162,6 @@ public IActionResult DeleteConfirmed(int id)
     }
 
     return RedirectToAction("Index");
+    }
+    }
 }

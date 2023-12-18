@@ -9,7 +9,7 @@ namespace crudapp.Controllers
 {
     public class FurnitureController : Controller
     {
-User ID=sa;password=examlyMssql@123;server=dffafdafebcfacbdcbaeadbebabcdebdca-0;Database=FurnitureDB;trusted_connection=false;Persist Security Info=False;Encrypt=False        // Existing code for Index, Create, Update, Delete actions
+        User ID=sa;password=examlyMssql@123;server=fcebdccccdbcfacbdcbaeadbebabcdebdca-0;Database=FurnitureDB;trusted_connection=false;Persist Security Info=False;Encrypt=False
 
         // POST: Handle form submission for create operation
         [HttpPost]

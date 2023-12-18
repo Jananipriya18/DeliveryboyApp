@@ -1,17 +1,17 @@
+using Microsoft.AspNetCore.Mvc;
+using crudapp.Models;
 using System;
 using System.Collections.Generic;
 using System.Data;
 using Microsoft.Data.SqlClient;
-using crudapp.Models;
 
 namespace crudapp.Controllers
 {
-
-    public class FurnitureController
+    public class FurnitureController : Controller
     {
         private string connectionString = "User ID=sa;password=examlyMssql@123;server=fcebdccccdbcfacbdcbaeadbebabcdebdca-0;Database=CRUDOperations;trusted_connection=false;Persist Security Info=False;Encrypt=False";
 
-        public List<Furniture> Index()
+        public IActionResult Index()
         {
             List<Furniture> furnitureList = new List<Furniture>();
 
@@ -39,12 +39,11 @@ namespace crudapp.Controllers
                 }
                 catch (Exception ex)
                 {
-                    // Handle exception
                     Console.WriteLine(ex.Message);
                 }
             }
 
-            return furnitureList;
+            return View(furnitureList); 
         }
     }
 }

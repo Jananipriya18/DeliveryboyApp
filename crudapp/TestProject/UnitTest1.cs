@@ -1,5 +1,7 @@
 using System;
 using crudapp.Models;
+using NUnit.Framework;
+
 
 namespace TestProject;
 
@@ -49,7 +51,7 @@ public class Tests
             var furniture = new Furniture();
 
             // Act
-            furniture.description = "A comfortable sofa";
+            furniture.Description = "A comfortable sofa";
 
             // Assert
             Assert.IsFalse(string.IsNullOrEmpty(furniture.description));

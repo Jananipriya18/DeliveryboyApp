@@ -36,9 +36,8 @@ namespace crudapp.Controllers
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        // Get the updated furniture list after creating a new item
-                        List<Furniture> updatedFurnitureList = GetFurnitureListFromDatabase();
-                        return View("Index", updatedFurnitureList);
+                        // Redirect to Index action with the updated furniture list
+                        return RedirectToAction("Index", GetFurnitureListFromDatabase());
                     }
                 }
                 catch (Exception ex)
@@ -49,6 +48,12 @@ namespace crudapp.Controllers
             }
 
             return View(newFurniture);
+        }
+
+        public IActionResult Index()
+        {
+            List<Furniture> furnitureList = GetFurnitureListFromDatabase();
+            return View(furnitureList);
         }
 
         private List<Furniture> GetFurnitureListFromDatabase()
@@ -87,13 +92,6 @@ namespace crudapp.Controllers
             return furnitureList;
         }
 
-        public IActionResult Index()
-        {
-            // Fetch the furniture list from the database
-            List<Furniture> furnitureList = GetFurnitureListFromDatabase();
-            return View(furnitureList);
-        }
-
         [HttpPost]
         public IActionResult Delete(int id)
         {
@@ -122,5 +120,8 @@ namespace crudapp.Controllers
 
             return RedirectToAction("Index");
         }
+
+        
+
     }
 }

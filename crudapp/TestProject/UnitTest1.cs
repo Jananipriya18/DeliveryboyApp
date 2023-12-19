@@ -2,14 +2,6 @@ using System;
 using crudapp.Models;
 using NUnit.Framework;
 using System.Reflection;
-using Xunit;
-using Microsoft.EntityFrameworkCore;
-using crudapp.Controllers;
-using crudapp.Models;
-using System.Linq;
-
-
-
 
 namespace TestProject
 
@@ -21,7 +13,7 @@ namespace TestProject
         public FurnitureControllerTests()
         {
             _options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(databaseName: "CRUDOperations")
+                .UseInMemoryDatabase(databaseName: "CRUDOperation")
                 .Options;
         }
 

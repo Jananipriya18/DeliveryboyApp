@@ -51,7 +51,7 @@ public class Tests
             var furniture = new Furniture();
 
             // Act
-            furniture.Description = "A comfortable sofa";
+            furniture.description = "A comfortable sofa";
 
             // Assert
             Assert.IsFalse(string.IsNullOrEmpty(furniture.description));

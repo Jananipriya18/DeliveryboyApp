@@ -7,6 +7,10 @@
 
 <h2>Furniture List</h2>
 
+<div>
+    <a asp-action="Create" asp-controller="Furniture" class="btn btn-primary">Create New</a>
+</div>
+
 <div class="card-container">
     @foreach (var item in Model)
     {
@@ -15,7 +19,6 @@
             <p>@item.description</p>
             <p>Material: @item.material</p>
             <p>Cost: $@item.cost</p>
-            <!-- Delete button/link for each item -->
             <form asp-action="Delete" asp-controller="Furniture" method="post">
                 <input type="hidden" name="id" value="@item.id" />
                 <input type="submit" value="Delete" class="btn btn-danger" onclick="return confirm('Are you sure you want to delete this item?');" />
@@ -24,22 +27,18 @@
     }
 </div> 
 
-<div>
-    <a asp-action="Create" asp-controller="Furniture" class="btn btn-primary">Create New</a>
-</div>
-
 <style>
     /* Define styles for the card container and cards */
     .card-container {
         display: flex;
         flex-wrap: wrap;
-        gap: 20px; /* Adjust the gap between cards */
+        gap: 20px;
     }
 
     .card {
         border: 1px solid #ccc;
         border-radius: 5px;
         padding: 10px;
-        width: 250px; /* Adjust the card width */
+        width: 250px;
     }
 </style>

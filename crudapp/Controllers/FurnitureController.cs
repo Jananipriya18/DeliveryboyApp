@@ -17,46 +17,41 @@ namespace crudapp.Controllers
         }
 
         [HttpPost]
-public IActionResult Create(Furniture newFurniture)
-{
-    // Assuming the connectionString is properly set
-
-    using (SqlConnection connection = new SqlConnection(connectionString))
-    {
-        string query = "INSERT INTO Furniture (product, description, material, cost) " +
-                       "VALUES (@Product, @Description, @Material, @Cost)";
-
-        SqlCommand command = new SqlCommand(query, connection);
-        command.Parameters.AddWithValue("@Product", newFurniture.product);
-        command.Parameters.AddWithValue("@Description", newFurniture.description);
-        command.Parameters.AddWithValue("@Material", newFurniture.material);
-        command.Parameters.AddWithValue("@Cost", newFurniture.cost);
-
-        try
+        public IActionResult Create(Furniture newFurniture)
         {
-            connection.Open();
-            int rowsAffected = command.ExecuteNonQuery();
-            if (rowsAffected > 0)
+            using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                // Redirect to the Index action after creating the furniture entry
-                return RedirectToAction("Index");
+                string query = "INSERT INTO Furniture (product, description, material, cost) " +
+                               "VALUES (@Product, @Description, @Material, @Cost)";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Product", newFurniture.product);
+                command.Parameters.AddWithValue("@Description", newFurniture.description);
+                command.Parameters.AddWithValue("@Material", newFurniture.material);
+                command.Parameters.AddWithValue("@Cost", newFurniture.cost);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        // Get the updated furniture list after creating a new item
+                        List<Furniture> updatedFurnitureList = GetFurnitureListFromDatabase();
+                        return View("Index", updatedFurnitureList);
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    // Handle the exception if needed
+                }
             }
+
+            return View(newFurniture);
         }
-        catch (Exception ex)
-        {
-            Console.WriteLine(ex.Message);
-            // Handle the exception if needed
-            // For debugging purposes, you can throw the exception to see details
-            throw;
-        }
-    }
 
-    // If insertion fails or an exception occurs, return back to the Create page
-    return View(newFurniture);
-}
-
-
-        public IActionResult Index()
+        private List<Furniture> GetFurnitureListFromDatabase()
         {
             List<Furniture> furnitureList = new List<Furniture>();
 
@@ -89,6 +84,13 @@ public IActionResult Create(Furniture newFurniture)
                 }
             }
 
+            return furnitureList;
+        }
+
+        public IActionResult Index()
+        {
+            // Fetch the furniture list from the database
+            List<Furniture> furnitureList = GetFurnitureListFromDatabase();
             return View(furnitureList);
         }
 

@@ -1,4 +1,5 @@
 using bikeapp.Models;
+using Microsoft.EntityFrameworkCore;
 
 var builder = WebApplication.CreateBuilder(args);
 

@@ -1,4 +1,5 @@
 namespace bikeapp.Models
+{
 public class Bike
 {
     public int BikeId { get; set; }
@@ -8,5 +9,5 @@ public class Bike
     public double Price { get; set; }
     public string Color { get; set; }
     
-    
+}   
 }

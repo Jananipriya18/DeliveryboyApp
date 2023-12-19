@@ -9,7 +9,7 @@ namespace crudapp.Controllers
 {
     public class BookController : Controller
     {
-        private string connectionString = "User ID=sa;password=examlyMssql@123;server=fcebdccccdbcfacbdcbaeadbebabcdebdca-0;Database=CRUDOperations;trusted_connection=false;Persist Security Info=False;Encrypt=False";
+        private string connectionString = "User ID=sa;password=examlyMssql@123;server=fcebdccccdbcfacbdcbaeadbebabcdebdca-0;Database=books;trusted_connection=false;Persist Security Info=False;Encrypt=False";
 
         public IActionResult Create()
         {

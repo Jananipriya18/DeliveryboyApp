@@ -11,17 +11,14 @@ namespace crudapp.Controllers
     {
         private string connectionString = "User ID=sa;password=examlyMssql@123;server=fcebdccccdbcfacbdcbaeadbebabcdebdca-0;Database=CRUDOperations;trusted_connection=false;Persist Security Info=False;Encrypt=False";
 
-        // Action method to display the form for creating a new furniture entry
         public IActionResult Create()
         {
-            return View(); // Return the Create.cshtml view for creating new furniture
+            return View();
         }
 
-        // Action method to handle the form submission for creating new furniture
         [HttpPost]
         public IActionResult Create(Furniture newFurniture)
         {
-            // Save the new furniture entry to the database using the provided model data
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
                 string query = "INSERT INTO Furniture (product, description, material, cost) " +
@@ -39,7 +36,6 @@ namespace crudapp.Controllers
                     int rowsAffected = command.ExecuteNonQuery();
                     if (rowsAffected > 0)
                     {
-                        // Redirect to the Index action after creating the furniture entry
                         return RedirectToAction("Index");
                     }
                 }
@@ -50,7 +46,6 @@ namespace crudapp.Controllers
                 }
             }
 
-            // If insertion fails, return back to the Create page
             return View(newFurniture);
         }
 
@@ -88,6 +83,35 @@ namespace crudapp.Controllers
             }
 
             return View(furnitureList);
+        }
+
+        [HttpPost]
+        public IActionResult Delete(int id)
+        {
+            using (SqlConnection connection = new SqlConnection(connectionString))
+            {
+                string query = "DELETE FROM Furniture WHERE id = @Id";
+
+                SqlCommand command = new SqlCommand(query, connection);
+                command.Parameters.AddWithValue("@Id", id);
+
+                try
+                {
+                    connection.Open();
+                    int rowsAffected = command.ExecuteNonQuery();
+                    if (rowsAffected > 0)
+                    {
+                        return RedirectToAction("Index");
+                    }
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                    throw; // For debugging purposes, throw the exception to see details
+                }
+            }
+
+            return RedirectToAction("Index");
         }
     }
 }

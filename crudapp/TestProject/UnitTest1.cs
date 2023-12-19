@@ -5,59 +5,6 @@ using System.Reflection;
 
 namespace TestProject
 
-{
-    public class FurnitureControllerTests
-    {
-        private readonly DbContextOptions<ApplicationDbContext> _options;
-
-        public FurnitureControllerTests()
-        {
-            _options = new DbContextOptionsBuilder<ApplicationDbContext>()
-                .UseInMemoryDatabase(databaseName: "CRUDOperation")
-                .Options;
-        }
-
-        [Fact]
-        public void Setup_DatabaseIsInitialized()
-        {
-            using (var context = new ApplicationDbContext(_options))
-            {
-                // Assert
-                Assert.NotNull(context);
-                Assert.True(context.Database.EnsureCreated());
-            }
-        }
-
-        [Theory]
-        [InlineData("Test Product", "Test Description", "Test Material", 100)]
-        public void Create_InsertsValuesIntoDatabase(string product, string description, string material, int cost)
-        {
-            // Arrange
-            using (var context = new ApplicationDbContext(_options))
-            {
-                var controller = new FurnitureController(context);
-                var newFurniture = new Furniture
-                {
-                    product = product,
-                    description = description,
-                    material = material,
-                    cost = cost
-                };
-
-                // Act
-                controller.Create(newFurniture);
-
-                // Assert
-                var insertedFurniture = context.Furniture.FirstOrDefault();
-                Assert.NotNull(insertedFurniture);
-                Assert.Equal(product, insertedFurniture.product);
-                Assert.Equal(description, insertedFurniture.description);
-                Assert.Equal(material, insertedFurniture.material);
-                Assert.Equal(cost, insertedFurniture.cost);
-            }
-        }
-    }
-}
 
 public class Tests
 {

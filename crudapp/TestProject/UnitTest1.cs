@@ -2,6 +2,11 @@ using System;
 using crudapp.Models;
 using NUnit.Framework;
 using System.Reflection;
+using Xunit;
+using Microsoft.EntityFrameworkCore;
+using crudapp.Controllers;
+using crudapp.Models;
+using System.Linq;
 
 
 namespace TestProject;
@@ -39,41 +44,70 @@ public class Tests
 
 
         [Test]
-        public void Furniture_Description_ShouldNotBeEmpty()
-        {
-            // Arrange
-            var furniture = new Furniture();
+            public void FurnitureController_CreateMethodExists()
+            {
+                string assemblyName = "crudapp";
+                string typeName = "crudapp.Controllers.FurnitureController";
+                Assembly assembly = Assembly.Load(assemblyName);
+                Type controllerType = assembly.GetType(typeName);
 
-            // Act
-            furniture.description = "A comfortable sofa";
+                // Specify the parameter types for the Create method
+                Type[] parameterTypes = new Type[] { typeof(Furniture) };
 
-            // Assert
-            Assert.IsFalse(string.IsNullOrEmpty(furniture.description));
-        }
+                MethodInfo createMethod = controllerType.GetMethod("Create", parameterTypes);
+                Assert.IsNotNull(createMethod);
+            }
+
+            [Test]
+            public void FurnitureController_UpdateMethodExists()
+            {
+                string assemblyName = "crudapp";
+                string typeName = "crudapp.Controllers.FurnitureController";
+                Assembly assembly = Assembly.Load(assemblyName);
+                Type controllerType = assembly.GetType(typeName);
+
+                // Specify the parameter types for the Update method
+                Type[] parameterTypes = new Type[] { typeof(Furniture) };
+
+                MethodInfo updateMethod = controllerType.GetMethod("Update", parameterTypes);
+                Assert.IsNotNull(updateMethod);
+            }
+
 
         [Test]
-        public void Furniture_Material_ShouldBeSetCorrectly()
+        public void FurnitureController_ReadMethodExists()
         {
-            // Arrange
-            var furniture = new Furniture();
-
-            // Act
-            furniture.material = "Wood";
-
-            // Assert
-            Assert.AreEqual("Wood", furniture.material);
+            string assemblyName = "crudapp";
+            string typeName = "crudapp.Controllers.FurnitureController";
+            Assembly assembly = Assembly.Load(assemblyName);
+            Type controllerType = assembly.GetType(typeName);
+            
+            MethodInfo readMethod = controllerType.GetMethod("Index");
+            Assert.IsNotNull(readMethod);
         }
+
+        // [Test]
+        // public void FurnitureController_UpdateMethodExists()
+        // {
+        //     string assemblyName = "crudapp";
+        //     string typeName = "crudapp.Controllers.FurnitureController";
+        //     Assembly assembly = Assembly.Load(assemblyName);
+        //     Type controllerType = assembly.GetType(typeName);
+            
+        //     MethodInfo updateMethod = controllerType.GetMethod("Update");
+        //     Assert.IsNotNull(updateMethod);
+        // }
 
         [Test]
-        public void Furniture_Cost_ShouldBePositive()
+        public void FurnitureController_DeleteMethodExists()
         {
-            // Arrange
-            var furniture = new Furniture();
-
-            // Act
-            furniture.cost = 100;
-
-            // Assert
-            Assert.IsTrue(furniture.cost > 0);
+            string assemblyName = "crudapp";
+            string typeName = "crudapp.Controllers.FurnitureController";
+            Assembly assembly = Assembly.Load(assemblyName);
+            Type controllerType = assembly.GetType(typeName);
+            
+            MethodInfo deleteMethod = controllerType.GetMethod("Delete");
+            Assert.IsNotNull(deleteMethod);
         }
+
 }

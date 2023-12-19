@@ -6,6 +6,6 @@ namespace bikeapp.Models
             : base(options)
         {
         }
-        public DbSet<B
+        public DbSet<Bike>Bikes{ get; set; }
     }
 }

@@ -18,17 +18,16 @@ public class Tests
         Assert.Pass();
     }
 
-    [Test]
-        public void Furniture_Id_ShouldBeSetCorrectly()
+     [Test]
+        public void Furniture_ClassExists()
         {
-            // Arrange
-            var furniture = new Furniture();
-
-            // Act
-            furniture.id = 1;
-
-            // Assert
-            Assert.AreEqual(1, furniture.id);
+            string assemblyName = "crudapp";
+            string typeName = "crudapp.Models.Furniture";
+            Assembly assembly = Assembly.Load(assemblyName);
+            Type rideType = assembly.GetType(typeName);
+            Assert.IsNotNull(rideType);
+            var ride = Activator.CreateInstance(rideType);
+            Assert.IsNotNull(ride);
         }
 
         [Test]

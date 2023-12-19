@@ -1,6 +1,7 @@
 using System;
 using crudapp.Models;
 using NUnit.Framework;
+using System.Reflection;
 
 
 namespace TestProject;
@@ -12,13 +13,7 @@ public class Tests
     {
     }
 
-    [Test]
-    public void Test1()
-    {
-        Assert.Pass();
-    }
-
-     [Test]
+        [Test]
         public void Furniture_ClassExists()
         {
             string assemblyName = "crudapp";
@@ -31,17 +26,17 @@ public class Tests
         }
 
         [Test]
-        public void Furniture_Product_ShouldNotBeNull()
+        public void FurnitureController_ClassExists()
         {
-            // Arrange
-            var furniture = new Furniture();
-
-            // Act
-            furniture.product = "Chair";
-
-            // Assert
-            Assert.IsNotNull(furniture.product);
+            string assemblyName = "crudapp";
+            string typeName = "crudapp.Controllers.FurnitureController";
+            Assembly assembly = Assembly.Load(assemblyName);
+            Type controllerType = assembly.GetType(typeName);
+            Assert.IsNotNull(controllerType);
+            var controller = Activator.CreateInstance(controllerType);
+            Assert.IsNotNull(controller);
         }
+
 
         [Test]
         public void Furniture_Description_ShouldNotBeEmpty()

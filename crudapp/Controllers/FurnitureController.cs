@@ -26,7 +26,7 @@ public IActionResult Create(Furniture newFurniture)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))
             {
-                string query = "INSERT INTO Furniture (product, description, material, cost) " +
+                string query = "INSERT INTO     `    (product, description, material, cost) " +
                                "VALUES (@Product, @Description, @Material, @Cost)";
 
                 SqlCommand command = new SqlCommand(query, connection);

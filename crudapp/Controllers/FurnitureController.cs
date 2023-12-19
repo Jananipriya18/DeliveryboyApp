@@ -227,3 +227,6 @@ public IActionResult Create(Furniture newFurniture)
 
     }
 }
+
+
+

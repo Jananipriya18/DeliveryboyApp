@@ -84,7 +84,6 @@ namespace crudapp.Controllers
                 catch (Exception ex)
                 {
                     Console.WriteLine(ex.Message);
-                    // Handle the exception if needed
                 }
             }
 

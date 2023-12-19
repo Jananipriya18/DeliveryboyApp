@@ -21,6 +21,7 @@ public IActionResult Create(Furniture newFurniture)
 {
     try
     {
+        Console.WriteLine(newFurniture.cost);
         if (ModelState.IsValid)
         {
             using (SqlConnection connection = new SqlConnection(connectionString))

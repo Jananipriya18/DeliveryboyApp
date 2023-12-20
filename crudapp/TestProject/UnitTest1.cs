@@ -105,4 +105,39 @@ public class Tests
             Assert.IsNotNull(deleteMethod);
         }
 
+        [Test]
+        public void IdShouldBeInteger()
+        {
+            var furniture = new Furniture();
+            Assert.That(furniture.id, Is.TypeOf<int>(), "Id should be of type int");
+        }
+
+        [Test]
+        public void ProductShouldBeString()
+        {
+            var furniture = new Furniture();
+            Assert.That(furniture.product, Is.TypeOf<string>(), "Product should be of type string");
+        }
+
+        [Test]
+        public void DescriptionShouldBeString()
+        {
+            var furniture = new Furniture();
+            Assert.That(furniture.description, Is.TypeOf<string>(), "Description should be of type string");
+        }
+
+        [Test]
+        public void MaterialShouldBeString()
+        {
+            var furniture = new Furniture();
+            Assert.That(furniture.material, Is.TypeOf<string>(), "Material should be of type string");
+        }
+
+        [Test]
+        public void CostShouldBeInteger()
+        {
+            var furniture = new Furniture();
+            Assert.That(furniture.cost, Is.TypeOf<int>(), "Cost should be of type int");
+        }
+
 }

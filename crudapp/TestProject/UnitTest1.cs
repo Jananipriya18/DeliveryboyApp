@@ -3,7 +3,7 @@ using crudapp.Models;
 using NUnit.Framework;
 using System.Reflection;
 
-namespace TestProject
+namespace TestProject{
 
 
 public class Tests
@@ -105,39 +105,59 @@ public class Tests
             Assert.IsNotNull(deleteMethod);
         }
 
+        private Type GetFurnitureType()
+        {
+            string assemblyName = "crudapp";
+            string typeName = "crudapp.Models.Furniture";
+            Assembly assembly = Assembly.Load(assemblyName);
+            return assembly.GetType(typeName);
+        }
+
         [Test]
         public void IdShouldBeInteger()
         {
-            var furniture = new Furniture();
-            Assert.That(furniture.id, Is.TypeOf<int>(), "Id should be of type int");
+            Type furnitureType = GetFurnitureType();
+            PropertyInfo idProperty = furnitureType.GetProperty("id");
+            Assert.IsNotNull(idProperty, "Id property not found");
+            Assert.AreEqual(typeof(int), idProperty.PropertyType, "Id should be of type int");
         }
 
         [Test]
         public void ProductShouldBeString()
         {
-            var furniture = new Furniture();
-            Assert.That(furniture.product, Is.TypeOf<string>(), "Product should be of type string");
+            Type furnitureType = GetFurnitureType();
+            PropertyInfo productProperty = furnitureType.GetProperty("product");
+            Assert.IsNotNull(productProperty, "Product property not found");
+            Assert.AreEqual(typeof(string), productProperty.PropertyType, "Product should be of type string");
         }
 
         [Test]
         public void DescriptionShouldBeString()
         {
-            var furniture = new Furniture();
-            Assert.That(furniture.description, Is.TypeOf<string>(), "Description should be of type string");
+            Type furnitureType = GetFurnitureType();
+            PropertyInfo descriptionProperty = furnitureType.GetProperty("description");
+            Assert.IsNotNull(descriptionProperty, "Description property not found");
+            Assert.AreEqual(typeof(string), descriptionProperty.PropertyType, "Description should be of type string");
         }
 
         [Test]
         public void MaterialShouldBeString()
         {
-            var furniture = new Furniture();
-            Assert.That(furniture.material, Is.TypeOf<string>(), "Material should be of type string");
+            Type furnitureType = GetFurnitureType();
+            PropertyInfo materialProperty = furnitureType.GetProperty("material");
+            Assert.IsNotNull(materialProperty, "Material property not found");
+            Assert.AreEqual(typeof(string), materialProperty.PropertyType, "Material should be of type string");
         }
 
         [Test]
         public void CostShouldBeInteger()
         {
-            var furniture = new Furniture();
-            Assert.That(furniture.cost, Is.TypeOf<int>(), "Cost should be of type int");
+            Type furnitureType = GetFurnitureType();
+            PropertyInfo costProperty = furnitureType.GetProperty("cost");
+            Assert.IsNotNull(costProperty, "Cost property not found");
+            Assert.AreEqual(typeof(int), costProperty.PropertyType, "Cost should be of type int");
         }
-
 }
+}
+
+https://github.com/Jananipriya18/ADO.NET---crudapp.git

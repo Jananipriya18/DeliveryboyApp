@@ -1,4 +1,7 @@
+using System;
 using System.Collections.Generic;
+using System.Linq;
+using System.Threading.Tasks;
 
 namespace Deliveryboy.Models
 {
@@ -10,6 +13,5 @@ namespace Deliveryboy.Models
         public string Location { get; set; }
         public decimal Amount { get; set; }
         public ICollection<Delivery>? DeliveryStatus { get; set; }
-        //public string DeliveryStatus { get; set; }
     }
 }

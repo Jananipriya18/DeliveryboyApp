@@ -1,0 +1,64 @@
+@model List<Deliveryboy.Models.Order>
+
+@{
+    ViewData["Title"] = "Dashboard";
+    var totalOrders = ViewBag.TotalOrders;
+    var pendingOrders = ViewBag.PendingOrders;
+    var outForDeliveryOrders = ViewBag.OutForDeliveryOrders;
+    var inTransitOrders = ViewBag.InTransitOrders;
+    var deliveredOrders = ViewBag.DeliveredOrders;
+    var deliveryStatuses = ViewBag.DeliveryStatuses as List<string>;
+    var selectedStatuses = new Dictionary<string, string>
+    {
+        { "Pending", "Pending" },
+        { "Out for Delivery", "Out for Delivery" },
+        { "In Transit", "In Transit" },
+        { "Delivered", "Delivered" }
+    };
+}
+
+<h1>Delivery Dashboard</h1>
+
+<p>Total Orders: @totalOrders</p>
+<p>Pending Orders: @pendingOrders</p>
+<p>Out for Delivery Orders: @outForDeliveryOrders</p>
+<p>In Transit Orders: @inTransitOrders</p>
+<p>Delivered Orders: @deliveredOrders</p>
+
+<table>
+    <thead>
+        <tr>
+            <th>Order ID</th>
+            <th>Customer Name</th>
+            <th>Location</th>
+            <th>Status</th>
+        </tr>
+    </thead>
+    <tbody>
+       @foreach (var order in Model)
+{
+    var currentStatus = order.DeliveryStatus.FirstOrDefault()?.Status;
+
+    <tr>
+        <td>@order.OrderID</td>
+        <td>@order.CustomerName</td>
+        <td>@order.Location</td>
+        <td>@currentStatus</td>
+        <td>
+            <form asp-controller="Dashboard" asp-action="UpdateOrderStatus" method="post">
+                <input type="hidden" name="orderId" value="@order.OrderID" />
+                <select name="status">
+                     <option value="Pending" selected='@(currentStatus == "Pending" ? "selected" : "")'>Pending</option>
+                     <option value="In Transit" selected='@(currentStatus == "In Transit" ? "selected" : "")'>In Transit</option>
+                     <option value="Delivered" selected='@(currentStatus == "Delivered" ? "selected" : "")'>Delivered</option>
+                     <option value="Out for delivery" selected='@(currentStatus == "Out for delivery" ? "selected" : "")'>Out for Delivery</option>
+                     <option value="@currentStatus" selected="@(currentStatus)"> @currentStatus</option>
+
+                </select>
+                <button type="submit">Update Status</button>
+            </form>
+        </td>
+    </tr>
+}
+    </tbody>
+</table>

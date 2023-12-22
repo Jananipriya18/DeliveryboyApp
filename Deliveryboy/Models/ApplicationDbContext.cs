@@ -1,4 +1,7 @@
-namespace Deliveryboy.Data
+using Microsoft.EntityFrameworkCore.Tools;
+using Deliveryboy.Models;
+
+namespace Deliveryboy.Models
 {
     public class ApplicationDbContext : DbContext
     {
